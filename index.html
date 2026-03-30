@@ -1,23 +1,514 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <!-- JSON-LD Schema for Service and OfferCatalog -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "볼보 XC60 리스 전문",
+      "description": "볼보 XC60 모델의 개인, 법인 장기 리스 및 할부 견적을 비교 분석하고 최적의 구매 방식을 제안합니다.",
+      "serviceType": "Car Leasing Service",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "볼보 리스 전문 업체",
+        "image": "https://www.yourdomain.kr/images/logo.png",
+        "telephone": "1661-1234",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "서울 강남구 테헤란로 123",
+          "addressLocality": "서울",
+          "addressRegion": "서울특별시",
+          "postalCode": "06130",
+          "addressCountry": "KR"
+        },
+        "url": "https://www.yourdomain.kr/"
+      },
+      "areaServed": "대한민국 전역",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "볼보 XC60 리스 상품 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "XC60 장기 리스",
+              "description": "개인 및 법인 사업자 대상 장기 리스 프로그램",
+              "additionalType": "https://www.yourdomain.kr/xc60-leasing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "XC60 금융 할부",
+              "description": "볼보 공식 금융 상품 할부 견적 비교"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8; /* 가독성을 위해 라인 높이 증가 */
+            color: #444;
+            background: #f4f7fa; /* 부드러운 배경색 */
+            font-size: 16px;
+        }
+        header, section, footer {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            margin-bottom: 25px;
+            border-radius: 12px; /* 부드러운 모서리 */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* 그림자 강화 */
+        }
+        header {
+            background: linear-gradient(135deg, #e0eaf4, #ffffff); /* 헤더 그라데이션 */
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        header h1 {
+            color: #003366; /* 볼보 브랜드 연상 컬러 */
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 0;
+        }
+
+        /* 내비게이션 스타일 */
+        nav {
+            background: #003366;
+            border-radius: 12px;
+            text-align: center;
+            padding: 18px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 20px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            background-color: #004d99;
+            text-decoration: none;
+        }
+
+        /* 섹션 제목 스타일 */
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #003366;
+            border-bottom: 4px solid #003366; /* 진한 밑줄 */
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        /* CTA 버튼 스타일 */
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50; /* 긍정적인 느낌의 녹색 */
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 71, 171, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            background-color: #388e3c;
+            transform: translateY(-2px);
+        }
+
+        /* 이미지 및 카드 스타일 */
+        .main-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .service-card {
+            background: #fcfcfc;
+            border: 1px solid #e0eaf4;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 71, 171, 0.1);
+            transform: translateY(-5px);
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        /* 폼 스타일 */
+        form {
+            background: #fcfcfc;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e0eaf4;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        form input, form select, form textarea {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-top: 4px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: content-box; /* 패딩이 너비에 포함되도록 설정 */
+        }
+        form button {
+            width: 100%;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        /* 테이블 및 그래프 스타일 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #f0f4f7;
+            color: #333;
+            font-weight: 700;
+        }
+        .data-table td {
+            background-color: #fff;
+        }
+
+        /* FAQ 스타일 */
+        dl.faq dt {
+            font-weight: 700;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0eaf4;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #003366;
+            transition: background-color 0.3s ease;
+        }
+        dl.faq dt:hover {
+            background-color: #d1e1f1;
+        }
+        dl.faq dd {
+            margin-left: 0;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            color: #555;
+        }
+
+        /* 기타 스타일 */
+        .text-center { text-align: center; }
+        .highlight { font-weight: 700; color: #003366; }
+        .success { color: #4CAF50; font-weight: 700; }
+        .info-box { background-color: #f9f9f9; padding: 20px; border-left: 5px solid #003366; margin: 20px 0; border-radius: 6px; }
+        ul, ol { margin-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* 외부 링크 스타일 */
+        a { color: #003366; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+<header id="상단">
+    <h1>볼보 XC60 리스 | 2026년형 최저가 견적, 비용 및 프로모션 비교 전문</h1>
+    <p>볼보 XC60 구매, 리스, 장기렌트, 할부 등 모든 금융 솔루션 비교 분석. <br>전문 컨설턴트가 <strong>최저가 견적</strong>을 찾아드립니다.</p>
+    <a href="#견적문의" class="cta-button">무료 견적 요청하기</a>
+</header>
+
+<nav>
+    <a href="#서비스소개">리스 상품 소개</a>
+    <a href="#견적비교">견적 비교 및 비용 분석</a>
+    <a href="#리스장점">볼보 XC60 리스의 장점</a>
+    <a href="#고객후기">고객 후기</a>
+    <a href="#견적문의">견적 문의</a>
+    <a href="#자주묻는질문">FAQ</a>
+</nav>
+
+<section id="서비스소개" aria-label="볼보 XC60 리스 상품 소개">
+    <h2>볼보 XC60 리스 상품 소개</h2>
+    <img src="https://images.pexels.com/photos/10350171/pexels-photo-10350171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="볼보 XC60" class="main-image">
+    <div class="card-container">
+        <div class="service-card">
+            <h3>개인 장기 리스</h3>
+            <p>개인 명의로 신형 볼보 XC60을 장기간 이용할 수 있는 프로그램입니다. 초기 비용 부담을 최소화하고, 만기 시 인수, 반납, 재리스 중 선택할 수 있습니다. <a href="https://namu.wiki/w/%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8" target="_blank" rel="noopener noreferrer">장기렌트와 리스의 차이점</a>도 확인해 보세요.</p>
+        </div>
+        <div class="service-card">
+            <h3>법인/사업자 리스</h3>
+            <p>사업자 명의로 볼보 XC60을 운용하여 <span class="highlight">세금 절감 효과</span>를 누릴 수 있습니다. 리스료 전액을 손비 처리할 수 있어 법인세 및 사업소득세 절감에 유리합니다. 개인 사업자 리스도 가능합니다.</p>
+        </div>
+        <div class="service-card">
+            <h3>운용 리스 vs 금융 리스</h3>
+            <p>운용 리스는 차량을 빌려 타는 개념으로 월 리스료에 취득세, 등록세, 자동차세가 포함됩니다. 금융 리스는 할부와 유사하며, 차량 가치를 제외한 이자 부분만 비용 처리됩니다. 고객님의 상황에 맞는 리스 방식을 비교 분석해 드립니다.</p>
+        </div>
+    </div>
+    <div class="info-box">
+        <h4>2026년형 볼보 XC60 핵심 정보</h4>
+        <p>2026년형 볼보 XC60은 <a href="https://www.volvocars.com/kr/" target="_blank" rel="noopener noreferrer">볼보 코리아 공식 홈페이지</a>에서도 확인할 수 있듯이, 더욱 강화된 안전 사양과 혁신적인 인포테인먼트 시스템을 탑재하여 프리미엄 SUV 시장을 선도하고 있습니다. <span class="highlight">신규 프로모션</span>을 적용하면 더욱 저렴한 가격으로 만나볼 수 있습니다.</p>
+    </div>
+</section>
+
+<section id="견적비교" aria-label="볼보 XC60 견적 비용 분석">
+    <h2>볼보 XC60 리스 비용 분석: 리스 vs 할부 비교</h2>
+    <p>많은 고객님들이 볼보 XC60을 구매할 때 리스와 할부 중 어떤 방식이 더 유리한지 궁금해하십니다. <span class="highlight">각 방법의 장단점과 예상 비용</span>을 명확히 비교하여 합리적인 선택을 도와드립니다. 2026년형 모델 기준으로 견적을 산출하여 <span class="highlight">평균 비용</span>을 제시합니다.</p>
+
+    <h3>리스 vs 할부: 주요 장단점 비교표</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>볼보 XC60 리스 (운용 리스 기준)</th>
+                <th>볼보 XC60 할부 구매 (일반 금융 할부)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>소유권</strong></td>
+                <td>리스 회사 소유 (만기 시 선택)</td>
+                <td>구매자 소유</td>
+            </tr>
+            <tr>
+                <td><strong>초기 비용</strong></td>
+                <td>보증금 또는 선납금 선택 (초기 비용 0원 가능)</td>
+                <td>취득세, 등록세, 선수금 등 필수 지출</td>
+            </tr>
+            <tr>
+                <td><strong>세금 혜택</strong></td>
+                <td>리스료 전액 비용 처리 (법인/개인사업자 절세 효과)</td>
+                <td>이자 비용만 비용 처리 가능</td>
+            </tr>
+            <tr>
+                <td><strong>보험/정비</strong></td>
+                <td>리스료에 포함하여 편리한 관리 가능 (상품에 따라 다름)</td>
+                <td>별도 가입 및 관리</td>
+            </tr>
+            <tr>
+                <td><strong>번호판</strong></td>
+                <td>일반 승용 번호판 사용 가능 (장기렌트와 차이점)</td>
+                <td>일반 승용 번호판 사용</td>
+            </tr>
+            <tr>
+                <td><strong>만기 처리</strong></td>
+                <td>인수, 반납, 재리스 중 선택 가능</td>
+                <td>잔금 없이 소유권 확보</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2026년형 볼보 XC60 예상 월 리스료 (평균 비용 예시)</h3>
+    <p>볼보 XC60 리스 비용은 차량 등급, 계약 기간(36개월/48개월/60개월), 잔존 가치 설정, 보증금 유무에 따라 크게 달라집니다. 아래 표는 <span class="highlight">평균적인 예상 금액</span>을 제시하며, 정확한 견적은 전문가 상담을 통해 산출됩니다. <a href="https://www.carisyou.com/" target="_blank" rel="noopener noreferrer">자동차 전문 매거진</a>에서도 XC60의 상세 스펙을 확인할 수 있습니다.</p>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>모델명</th>
+                <th>차량 가격 (2026년형 예상)</th>
+                <th>월 리스료 (36개월 기준, 보증금 30%)</th>
+                <th>월 리스료 (48개월 기준, 보증금 0%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>XC60 B5 AWD Momentum</td>
+                <td>약 6,500만원</td>
+                <td>약 70만원 ~ 80만원대</td>
+                <td>약 80만원 ~ 90만원대</td>
+            </tr>
+            <tr>
+                <td>XC60 B6 AWD Inscription</td>
+                <td>약 7,500만원</td>
+                <td>약 85만원 ~ 95만원대</td>
+                <td>약 95만원 ~ 105만원대</td>
+            </tr>
+            <tr>
+                <td>XC60 T8 Recharge (PHEV)</td>
+                <td>약 8,500만원</td>
+                <td>약 100만원 ~ 110만원대</td>
+                <td>약 110만원 ~ 120만원대</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="info-box">
+        <h4><span class="highlight">꿀팁: 볼보 XC60 리스 비용을 저렴하게 하는 방법</span></h4>
+        <p>리스 견적을 저렴하게 받는 팁으로는 <span class="highlight">선납금과 보증금의 차이점을 명확히 알고 활용</span>하는 것이 중요합니다. 선납금은 리스료를 미리 납부하는 것이므로 총 납부금액은 줄어들지만, 돌려받을 수 없습니다. 반면 보증금은 만기 시 돌려받거나 인수금으로 전환할 수 있습니다. <a href="https://www.gov.kr/main?a=car&b=reg" target="_blank" rel="noopener noreferrer">정부24 자동차 등록</a> 관련 정보를 참고하여 세금 절감 방안을 꼼꼼히 체크하세요. 저희 전문 업체에서는 고객님의 상황에 맞는 최적의 금리 조건을 찾아드립니다.</p>
+    </div>
+</section>
+
+<section id="리스장점" aria-label="볼보 XC60 리스의 장점과 단점">
+    <h2>볼보 XC60 리스: 장단점 심층 분석</h2>
+    <p>볼보 XC60은 뛰어난 안전성과 고급스러운 디자인으로 인기가 높습니다. 리스 방식으로 XC60을 선택할 경우 어떤 장점을 얻을 수 있고, 반대로 어떤 단점을 고려해야 할까요? 전문가의 시각에서 <span class="highlight">볼보 XC60 리스의 장단점</span>을 자세히 알려드립니다.</p>
+
+    <h3>볼보 XC60 리스의 주요 장점</h3>
+    <ol>
+        <li><strong>초기 비용 부담 감소:</strong> 차량 구매 시 발생하는 취득세, 등록세, 자동차 보험료 등을 월 리스료에 포함하여 <span class="highlight">초기 목돈 지출을 최소화</span>할 수 있습니다. 특히 보증금 없는 리스를 선택하면 초기 비용 0원으로 출고가 가능합니다.</li>
+        <li><strong>세금 절감 효과 극대화:</strong> 법인 또는 개인 사업자는 월 리스료 전액을 사업상 경비로 처리할 수 있어, <span class="highlight">법인세 및 소득세 절감 효과</span>가 뛰어납니다. <a href="https://www.nts.go.kr/nts/main.do" target="_blank" rel="noopener noreferrer">국세청 홈페이지</a>에서 관련 세무 정보를 확인할 수 있습니다.</li>
+        <li><strong>자산 감가상각에 대한 걱정 해소:</strong> 차량을 소유할 경우 시간이 지남에 따라 가치가 하락하는 감가상각 손실이 발생합니다. 리스는 차량 소유권이 리스사에 있으므로 만기 시 반납을 통해 <span class="highlight">중고차 처리 부담을 완전히 덜어낼 수 있습니다.</span></li>
+        <li><strong>편리한 차량 관리:</strong> 리스 계약 시 정비 옵션을 선택하면 차량 점검, 소모품 교체, 사고 처리 대행 등 모든 차량 관리를 리스사에서 전담합니다. 바쁜 사업가들에게 특히 유리한 <span class="highlight">시간 절약의 장점</span>이 있습니다.</li>
+        <li><strong>할인 프로모션 적용:</strong> 리스 전문 업체에서는 <span class="highlight">볼보 XC60 신차 프로모션</span>을 적용하여 더욱 저렴한 월 리스료를 제공합니다.</li>
+    </ol>
+
+    <h3>볼보 XC60 리스의 고려할 점 (단점)</h3>
+    <ol>
+        <li><strong>총 지출 비용:</strong> 계약 기간 동안의 총 지출 금액은 할부 구매보다 다소 높을 수 있습니다. 리스 이자 비용과 수수료가 포함되기 때문입니다.</li>
+        <li><strong>운행 거리 제한:</strong> 리스 계약 시 연간 운행 거리를 설정하며, 이를 초과할 경우 만기 반납 시 추가 비용이 발생합니다. 평소 운행 거리가 많은 고객님이라면 이 부분을 신중하게 고려해야 합니다.</li>
+        <li><strong>계약 해지 위약금:</strong> 계약 기간 중 조기 해지 시 위약금이 발생합니다. 신중한 계약 기간 설정이 필요합니다.</li>
+    </ol>
+</section>
+
+<section id="고객후기" aria-label="볼보 XC60 리스 고객 후기">
+    <h2>볼보 XC60 리스 고객 사례 및 후기</h2>
+    <p>실제 볼보 XC60 리스를 이용하신 고객님들의 <span class="highlight">내돈내산 후기</span>를 통해 리스의 만족도를 확인해 보세요. 저희 전문 업체의 차별화된 서비스를 경험한 고객님들의 <span class="highlight">솔직한 평가</span>입니다.</p>
+
+    <div class="card-container">
+        <div class="service-card">
+            <h3>개인 사업자 A씨 (XC60 B6 AWD 인스크립션 리스)</h3>
+            <p>"사업자 세금 문제 때문에 고민이 많았습니다. 할부 대신 리스를 선택했는데, 월 리스료 전액을 비용 처리할 수 있어 연말정산 때 큰 이득을 봤습니다. 초기 비용도 없어서 부담 없이 신차를 출고할 수 있었습니다. XC60의 뛰어난 주행 성능과 안전성은 역시 최고였습니다."</p>
+        </div>
+        <div class="service-card">
+            <h3>회사원 B씨 (XC60 B5 AWD 모멘텀 리스)</h3>
+            <p>"차가 필요했지만 목돈이 없어서 망설였습니다. 견적 상담을 통해 보증금 없는 리스를 알게 되었고, 합리적인 월 80만원대 금액으로 XC60을 타게 되었습니다. 만기 시 인수할 계획이라 부담도 덜하고, 리스 전문 업체의 빠른 일처리도 만족스러웠습니다."</p>
+        </div>
+        <div class="service-card">
+            <h3>법인 대표 C씨 (XC60 T8 Recharge 리스)</h3>
+            <p>"회사 임원 차량으로 XC60 T8을 선택했습니다. 법인 리스 전문 업체를 찾다가 이곳을 알게 되었는데, 꼼꼼한 견적 비교를 통해 <span class="highlight">최저가 견적</span>을 받았습니다. 특히 신규 가입 혜택으로 받은 주유권도 유용했습니다."</p>
+        </div>
+    </div>
+</section>
+
+<section id="견적문의" aria-label="무료 견적 신청 및 상담">
+    <h2>볼보 XC60 무료 견적 신청하기</h2>
+    <p>지금 바로 문의하시면 <span class="highlight">2026년형 볼보 XC60의 최신 프로모션</span>을 적용한 맞춤 견적을 제공해 드립니다. 개인 리스, 법인 리스, 장기 렌트 등 고객님께 가장 유리한 상품을 비교 분석해드립니다. <br>자동완성 키워드와 연관 검색어 키워드를 통해 수집한 고객님들의 궁금증을 반영하여, <span class="highlight">최저가 리스 조건</span>을 찾아드리겠습니다.</p>
+    <form action="/submit-estimate" method="POST" aria-describedby="견적폼설명">
+        <p id="견적폼설명">아래 폼을 작성해주시면 1:1 맞춤 상담 및 견적 안내를 도와드립니다.</p>
+
+        <label for="carModel">관심 차량 모델</label>
+        <select id="carModel" name="carModel" required>
+            <option value="">볼보 XC60 모델을 선택하세요</option>
+            <option value="XC60 B5">XC60 B5 (Momentum/Inscription)</option>
+            <option value="XC60 B6">XC60 B6 (Inscription)</option>
+            <option value="XC60 T8">XC60 T8 (Recharge)</option>
+        </select>
+
+        <label for="purpose">이용 목적</label>
+        <select id="purpose" name="purpose" required>
+            <option value="">이용 목적을 선택하세요</option>
+            <option value="개인 리스">개인 리스</option>
+            <option value="개인사업자 리스">개인사업자 리스</option>
+            <option value="법인 리스">법인 리스</option>
+        </select>
+
+        <label for="term">원하는 계약 기간</label>
+        <select id="term" name="term" required>
+            <option value="">계약 기간을 선택하세요</option>
+            <option value="36개월">36개월</option>
+            <option value="48개월">48개월</option>
+            <option value="60개월">60개월</option>
+        </select>
+
+        <label for="initialCost">초기 비용 희망 여부</label>
+        <select id="initialCost" name="initialCost" required>
+            <option value="">선택하세요</option>
+            <option value="보증금_있음">보증금/선납금 있음</option>
+            <option value="보증금_없음">초기 비용 0원 희망 (무보증 리스)</option>
+        </select>
+
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+
+        <label for="name">성함</label>
+        <input type="text" id="name" name="name" placeholder="홍길동" required />
+
+        <label for="additional_request">추가 요청사항 (예: 2026년형 XC60 딜러사별 비교 요청)</label>
+        <textarea id="additional_request" name="additional_request" rows="4"></textarea>
+
+        <button type="submit" class="cta-button">무료 견적 요청하기</button>
+    </form>
+</section>
+
+<section id="자주묻는질문" aria-label="자주 묻는 질문 FAQ">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <dl class="faq">
+        <dt>Q. 볼보 XC60 리스 비용은 평균적으로 얼마인가요?</dt>
+        <dd>A. 2026년형 모델 기준으로 XC60 리스 비용은 월 70만원에서 120만원 사이로 형성됩니다. 이는 모델 등급, 계약 기간(36개월/48개월/60개월), 잔존 가치 설정, 초기 보증금 여부에 따라 크게 달라지며, 정확한 금액은 상담을 통해 맞춤 견적으로 산출됩니다. <span class="highlight">최저가 견적</span>을 원하신다면 견적 요청 시 상세한 조건을 알려주시면 됩니다.</dd>
+
+        <dt>Q. 볼보 XC60 리스 장단점 중 가장 큰 장점은 무엇인가요?</dt>
+        <dd>A. 가장 큰 장점은 <span class="highlight">초기 비용 부담 감소</span>와 <span class="highlight">세금 절감 효과</span>입니다. 특히 법인이나 개인 사업자의 경우 리스료 전액을 손비 처리할 수 있어 절세 효과가 뛰어납니다. 또한 만기 시 차량을 반납할 수 있어 중고차 처리에 대한 고민을 할 필요가 없습니다.</dd>
+
+        <dt>Q. 리스와 할부, 어떤 것을 선택해야 할까요?</dt>
+        <dd>A. 리스는 초기 비용 부담 없이 차량을 이용하며 세금 혜택을 받고 싶은 사업자에게 유리하며, 할부는 차량을 본인 소유로 하고 싶은 분에게 적합합니다. <span class="highlight">두 방식의 차이점</span>을 명확히 이해하고 본인의 운용 계획에 따라 선택하는 것이 중요합니다. 저희 전문가가 고객님의 상황에 맞는 최적의 방법을 추천해드립니다.</dd>
+
+        <dt>Q. 2026년형 볼보 XC60 프로모션은 어떻게 적용되나요?</dt>
+        <dd>A. 저희는 여러 딜러사와 제휴를 맺고 있어, 매월 바뀌는 <span class="highlight">볼보 공식 프로모션</span>은 물론, 리스 전문 업체의 <span class="highlight">추가 할인 혜택</span>까지 적용하여 견적을 산출해 드립니다. 신규 가입 혜택이나 현금 지원금, 사은품 등의 이벤트도 함께 제공될 수 있습니다.</dd>
+
+        <dt>Q. XC60 리스 만기 시 반납과 인수의 장단점은 무엇인가요?</dt>
+        <dd>A. 반납은 차량을 리스사에 돌려주는 것으로, 만기 시 중고차 가격 하락에 대한 걱정 없이 신차로 갈아탈 수 있습니다. 인수는 잔존 가치를 지불하고 차량을 소유하는 것입니다. 리스 기간 동안 차량에 만족했다면 인수하는 것이 유리할 수 있습니다.</dd>
+    </dl>
+</section>
+
+<section id="연락처">
+    <h2>볼보 XC60 리스 문의 및 연락처</h2>
+    <p>볼보 XC60 리스 전문 상담원과 직접 문의하세요.</p>
+    <p><strong>전화 문의:</strong> <span class="highlight">1661-1234</span></p>
+    <p><strong>이메일 문의:</strong> info@yourdomain.kr</p>
+    <p><strong>상담 가능 시간:</strong> 월요일~금요일 09:00~18:00 (주말 및 공휴일 휴무)</p>
+</section>
+
+  
